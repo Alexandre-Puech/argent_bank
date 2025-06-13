@@ -13,7 +13,7 @@
   flex-direction: row;
   gap: 5px;
 }
-.main-nav:hover {
+.main-nav .main-nav-item:hover {
   text-decoration: underline;
 }
 .main-nav .main-nav-icon {
@@ -27,6 +27,16 @@
 .main-nav .main-nav-logo-image {
   max-width: 100%;
   width: 200px;
+}
+
+.main-nav-connected {
+  display: flex;
+  flex-direction: row;
+}
+.main-nav-connected .logout-button {
+  background: none;
+  border: none;
+  overflow: visible;
 }
 
 /*# sourceMappingURL=Header.css.map */

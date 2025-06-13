@@ -2,11 +2,11 @@ import { useLocation } from "react-router-dom";
 
 export default function Layout({ header, footer, children }) {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const isHomePage = location.pathname === "/";
   return (
     <>
       {header}
-      <main className={isLoginPage ? "main bg-dark" : "main"}>{children}</main>
+      <main className={isHomePage ? "main" : "main bg-dark"}>{children}</main>
       {footer}
     </>
   );
