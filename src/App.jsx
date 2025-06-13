@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AuthLoader from "./components/AuthLoader.jsx";
+import Protected from "./components/Protected.jsx";
 
 function App() {
   return (
@@ -19,7 +20,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="profile" element={<Profile />} />
+              <Route
+                path="profile"
+                element={
+                  <Protected>
+                    <Profile />
+                  </Protected>
+                }
+              />
             </Routes>
           </Layout>
         </Router>

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
   value: null,
-  connected: "false",
+  connected: false,
   token: "",
   user: {
     prenom: "",
@@ -26,6 +26,8 @@ export const userSlice = createSlice({
       state.nom = "";
       state.token = "";
       state.connected = false;
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
     },
   },
 });

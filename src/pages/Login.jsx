@@ -14,10 +14,20 @@ export default function Login() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user && user.connected) {
-      navigate("/", { replace: true });
+    if (user && user.connected && user.token) {
+      navigate("/profile", { replace: true });
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("rememberedEmail");
+    const remember = localStorage.getItem("rememberMe") === "true";
+
+    if (remember && savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -49,13 +59,16 @@ export default function Login() {
         const { firstName, lastName } = profileData.body;
 
         if (rememberMe) {
+          localStorage.setItem("rememberedEmail", email);
+          localStorage.setItem("rememberMe", "true");
           localStorage.setItem("token", token);
         } else {
+          localStorage.removeItem("rememberedEmail");
+          localStorage.removeItem("rememberMe");
           sessionStorage.setItem("token", token);
         }
 
         dispatch(login({ prenom: firstName, nom: lastName, token }));
-        localStorage.setItem("token", token);
         navigate("/profile", { replace: true });
       } else {
         alert("Identifiants invalides");
