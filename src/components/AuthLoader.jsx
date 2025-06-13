@@ -34,5 +34,6 @@ export default function AuthLoader({ children }) {
     };
     initAuth();
   }, [dispatch]);
+  console.log("App started on", window.location.pathname);
   return children;
 }

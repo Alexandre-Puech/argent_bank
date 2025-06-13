@@ -4,8 +4,16 @@ import { Navigate } from "react-router-dom";
 export default function Protected({ children }) {
   const { connected, token } = useSelector((state) => state.user);
 
-  if (!connected || !token) {
-    return <Navigate to="/" replace />;
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!connected) {
+    return (
+      <div className="protected-loading">
+        <p>Chargement de votre session...</p>
+      </div>
+    );
   }
 
   return children;
