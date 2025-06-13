@@ -8,19 +8,22 @@ import Profile from "./pages/User";
 import Layout from "./components/Layout";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AuthLoader from "./components/AuthLoader.jsx";
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Layout header={<Header />} footer={<Footer />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
-          </Routes>
-        </Layout>
-      </Router>
+      <AuthLoader>
+        <Router>
+          <Layout header={<Header />} footer={<Footer />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="profile" element={<Profile />} />
+            </Routes>
+          </Layout>
+        </Router>
+      </AuthLoader>
     </Provider>
   );
 }
