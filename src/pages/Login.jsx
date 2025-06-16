@@ -14,20 +14,16 @@ export default function Login() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user && user.connected && user.token) {
-      navigate("/profile", { replace: true });
-    }
-  }, [user, navigate]);
-
-  useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     const remember = localStorage.getItem("rememberMe") === "true";
-
     if (remember && savedEmail) {
       setEmail(savedEmail);
       setRememberMe(true);
     }
-  }, []);
+    if (user && user.connected && user.token) {
+      navigate("/profile");
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -69,7 +65,7 @@ export default function Login() {
         }
 
         dispatch(login({ prenom: firstName, nom: lastName, token }));
-        navigate("/profile", { replace: true });
+        navigate("/profile");
       } else {
         alert("Identifiants invalides");
       }

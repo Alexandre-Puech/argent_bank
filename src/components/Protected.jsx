@@ -5,7 +5,7 @@ export default function Protected({ children }) {
   const { connected, token } = useSelector((state) => state.user);
 
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" />;
   }
 
   if (!connected) {

@@ -56,7 +56,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className="userHeader">
+      <div className="user-header">
         {isEditing ? (
           <form onSubmit={handleSubmit} className="edit-name-form">
             <h1>Modifier votre nom</h1>
@@ -66,12 +66,14 @@ export default function Profile() {
                 value={prenom}
                 onChange={(e) => setPrenom(e.target.value)}
                 required
+                className="input-field"
               />
               <input
                 type="text"
                 value={nom}
                 onChange={(e) => setNom(e.target.value)}
                 required
+                className="input-field"
               />
             </div>
             <div className="edit-buttons">

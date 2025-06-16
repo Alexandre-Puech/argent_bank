@@ -4,10 +4,8 @@ export const initialState = {
   value: null,
   connected: false,
   token: "",
-  user: {
-    prenom: "",
-    nom: "",
-  },
+  prenom: "",
+  nom: "",
 };
 
 export const userSlice = createSlice({
@@ -26,8 +24,6 @@ export const userSlice = createSlice({
       state.nom = "";
       state.token = "";
       state.connected = false;
-      localStorage.removeItem("token");
-      sessionStorage.removeItem("token");
     },
     updateUser(state, action) {
       const { prenom, nom } = action.payload;

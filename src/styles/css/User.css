@@ -39,9 +39,41 @@
   padding: 10px;
 }
 
-.userHeader {
+.user-header {
   color: #fff;
   margin-bottom: 2rem;
+}
+
+.edit-name-form {
+  color: #ffffff;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.edit-name-form h1 {
+  margin-bottom: 0;
+}
+.edit-name-form .edit-fields {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.edit-name-form .edit-fields .input-field {
+  height: 30px;
+  border: none;
+  padding-left: 3px;
+}
+.edit-name-form .edit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+}
+.edit-name-form .edit-buttons .edit-button {
+  width: 70px;
 }
 
 .transaction-button {
