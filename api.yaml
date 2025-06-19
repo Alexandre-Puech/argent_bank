@@ -1,0 +1,301 @@
+# Description: Visualiser toutes les transactions pour le mois en cours, groupées par compte
+# Method: GET
+# Endpoint: http://localhost:3001/users/:userId/accounts/:accountId/transactions
+# Parameters: userId, accountId
+# Responses: 200 - 400 - 401 - 403 - 404 - 500
+
+# Description: Visualiser les détails d'une transaction dans une autre vue
+# Method: GET
+# Endpoint: http://localhost:3001/users/:userId/accounts/:accountId/transactions/:transactionId
+# Parameters: userId, accountId, transactionId
+# Responses: 200 - 400 - 401 - 403 - 404 - 500
+
+# Description: Ajouter des informations sur une transaction
+# Method: POST
+# Endpoint: http://localhost:3001/users/:userId/accounts/:accountId/transactions/:transactionId
+# Parameters: userId, accountId, transactionId
+# Responses: 201 - 400 - 401 - 403 - 404 - 500
+
+# Description: Modifier des informations sur une transaction
+# Method: PUT
+# Endpoint: http://localhost:3001/users/:userId/accounts/:accountId/transactions/:transactionId
+# Parameters: userId, accountId, transactionId
+# Responses: 200 - 400 - 401 - 403 - 404 - 500
+
+# Description: Supprimer des informations sur une transaction
+# Method: DELETE
+# Endpoint: http://localhost:3001/users/:userId/accounts/:accountId/transactions/:transactionId
+# Parameters: userId, accountId, transactionId
+# Responses: 204 - 400 - 401 - 403 - 404 - 500
+
+# https://editor.swagger.io/
+
+openapi: 3.0.4
+info:
+  title: Argent Bank
+  description: Contains all API edpoints for the Argent Bank codebase
+  termsOfService: https://swagger.io/terms/
+  version: 1.0.0
+servers:
+  - url: localhost:3001
+paths:
+  /users/{userId}/accounts/{accountId}/transactions:
+    get:
+      tags:
+        - transactions
+      description: Visualiser toutes les transactions pour le mois en cours, groupées par compte
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Liste des transactions récupérée avec succès
+        "400":
+          description: Mauvaise requête
+        "401":
+          description: Non autorisé
+        "403":
+          description: Accès interdit
+        "404":
+          description: Non trouvé
+        "500":
+          description: Erreur serveur
+
+  /users/{userId}/accounts/{accountId}/transactions/{transactionId}:
+    get:
+      tags:
+        - transactions
+      description: Visualiser les détails d'une transaction dans une autre vue
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Détail de la transaction récupéré avec succès
+        "400":
+          description: Mauvaise requête
+        "401":
+          description: Non autorisé
+        "403":
+          description: Accès interdit
+        "404":
+          description: Non trouvé
+        "500":
+          description: Erreur serveur
+
+    post:
+      tags:
+        - transactions
+      description: Ajouter des informations sur une transaction
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Transaction créée
+        "400":
+          description: Mauvaise requête
+        "401":
+          description: Non autorisé
+        "403":
+          description: Accès interdit
+        "404":
+          description: Non trouvé
+        "500":
+          description: Erreur serveur
+
+    put:
+      tags:
+        - transactions
+      description: Modifier des informations sur une transaction
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Transaction modifiée
+        "400":
+          description: Mauvaise requête
+        "401":
+          description: Non autorisé
+        "403":
+          description: Accès interdit
+        "404":
+          description: Non trouvé
+        "500":
+          description: Erreur serveur
+
+    delete:
+      tags:
+        - transactions
+      description: Supprimer des informations sur une transaction
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Transaction supprimée
+        "400":
+          description: Mauvaise requête
+        "401":
+          description: Non autorisé
+        "403":
+          description: Accès interdit
+        "404":
+          description: Non trouvé
+        "500":
+          description: Erreur serveur
+components:
+  schemas:
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "tr_123456"
+        accountId:
+          type: string
+          example: "acc_987654"
+        userId:
+          type: string
+          example: "user_001"
+        date:
+          type: string
+          format: date-time
+          example: "2024-06-01T12:34:56Z"
+        amount:
+          type: number
+          format: float
+          example: 150.75
+        type:
+          type: string
+          example: "debit"
+        category:
+          type: string
+          example: "Alimentation"
+        description:
+          type: string
+          example: "Achat supermarché"
+        notes:
+          type: string
+          example: "Courses du mois"
+      required:
+        - id
+        - accountId
+        - userId
+        - date
+        - amount
+        - type
+
+    TransactionInput:
+      type: object
+      properties:
+        category:
+          type: string
+          example: "Alimentation"
+        description:
+          type: string
+          example: "Achat supermarché"
+        notes:
+          type: string
+          example: "Courses du mois"
+      required:
+        - category
+        - description
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: "Erreur lors du traitement de la requête"
+      required:
+        - code
+        - message
+
+  responses:
+    TransactionList:
+      description: Liste des transactions
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "#/components/schemas/Transaction"
+
+    TransactionDetail:
+      description: Détail d'une transaction
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Transaction"
+
+    ErrorResponse:
+      description: Erreur
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
